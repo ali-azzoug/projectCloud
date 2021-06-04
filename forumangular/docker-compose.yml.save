@@ -1,0 +1,12 @@
+version: '2.2'
+
+services:
+ angular :
+  build: forum
+  ports:
+   - 4200:4200
+
+ database:
+  image: mysql
+  ports:
+   - 8081:80
