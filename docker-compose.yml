@@ -1,14 +1,15 @@
  version: '2'
 
  services:
-  angular: # name of the first service
-   build: forumangular
-   networks:
-    - net
-   ports:
-    - "4201:4201" # specify port forewarding
-   volumes:
-    - ./forumangular:/app
+  angular-service: # The name of the service
+    container_name: angularcontainer  # Container name
+    build: ./forumangular # Location of our Dockerfile
+    volumes: # Volume binding
+      - './forumangular:/usr/src/app' 
+    ports: 
+      - '4200:4200' # Port mapping
+    command: > 
+      bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
   
   php:
    build: forumphp # name of the first service
