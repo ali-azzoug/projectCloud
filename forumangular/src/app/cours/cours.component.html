@@ -1,0 +1,20 @@
+<br/>
+<h2>Liste des cours</h2>
+<br/>
+
+<table   datatable [dtTrigger]="dtTrigger" class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th>Nom cours</th>
+            <th> #Topics </th>
+            <th> #Posts </th>
+            <th> Dernière modification </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cour of cours" style='transform: rotate(0);'> <th scope='row'><a [routerLink]="['/topics', cour.id_cours]" routerLinkActive="Topic"  class='stretched-link'></a></th><td>{{cour.nom}}</td><td>{{cour.nb_sujet}}</td><td>{{cour.nb_post}}</td><td>{{cour.date_maj}}</td></tr>
+    </tbody>
+</table>
+ 
+

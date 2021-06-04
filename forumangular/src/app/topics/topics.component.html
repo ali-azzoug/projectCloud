@@ -1,0 +1,47 @@
+<app-breadcrumb [paths]="breadcrumb"></app-breadcrumb>
+<br/>
+<h2>Liste des topics</h2>
+<br/>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_sujet">
+    nouveau sujet
+    </button>
+  
+    <div class="modal fade" id="modal_sujet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Nouveau sujet</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Saisissez un nouveau sujet :</h6>
+          <input type="text" [(ngModel)]="newTopic" id="new_subject" class="form-control"/>
+          <div id="newTopicError" class="my-1"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="button" id="btn_new_topic" class="btn btn-primary" (click)="sendNewTopic()">Créer nouveau sujet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+<table   datatable [dtTrigger]="dtTrigger" class="table table-hover" id="tablesujet">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th>Nom topic</th>
+            <th> #Posts </th>
+            <th> Dernière modification </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let topic of topics" style='transform: rotate(0);'> <th scope='row'><a [routerLink]="['/posts', topic.id_sujet]" routerLinkActive="Post"  class='stretched-link'></a></th><td>{{topic.nom}}</td><td>{{topic.nb_post}}</td><td>{{topic.dernier_maj}}</td></tr>
+    </tbody>
+</table>
+ 

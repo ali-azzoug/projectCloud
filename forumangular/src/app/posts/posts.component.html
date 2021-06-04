@@ -1,0 +1,56 @@
+<app-breadcrumb [paths]="breadcrumb"></app-breadcrumb>
+<br/>
+<h2>Liste des posts</h2>
+<br/>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_post">
+    nouveau post
+    </button>
+  
+    <div class="modal fade" id="modal_post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Nouveau post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Saisissez un nouveau post :</h6>
+          <ckeditor [editor]="Editor" [(ngModel)]="newpost"></ckeditor>
+          <div id="newTopicError" class="my-1"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="button" id="btn_new_topic" class="btn btn-primary" (click)="sendNewPost()">Créer nouveau post</button>
+        </div>
+      </div>
+    </div>
+</div>
+<br>
+<br>
+
+    <table datatable [dtTrigger]="dtTrigger" id="tablePosts" class="tablePosts table table-hover tablePosts">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="tablePosts">Posts</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of posts" class="tablePosts">
+                <td class="tablePosts">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-3">{{post.fk_utilisateur}}</h6>
+                        <small>{{post.date}}</small>
+                    </div>
+                    <div class="border-top border-secondary pt-2" [innerHTML]="post.description"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+ 
+ 
